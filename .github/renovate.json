@@ -5,6 +5,8 @@
     "helpers:pinGitHubActionDigests",
     "docker:pinDigests"
   ],
+  "rebaseWhen": "conflicted",
+  "automerge": true,
   "regexManagers": [
     {
       "description": "Update _VERSION variables in Dockerfiles",

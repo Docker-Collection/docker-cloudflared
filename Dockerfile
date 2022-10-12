@@ -22,13 +22,17 @@ COPY --from=cloudflared --chown=nonroot /usr/local/bin/cloudflared /usr/local/bi
 # Copy shell to image
 COPY --from=busybox /bin/sh /bin/sh
 
+# Copy tail to iamge
+COPY --from=busybox /bin/tail /bin/tail
+
 # Copy entrypoint
 COPY --chown=nonroot entrypoint.sh .
 
 # Add nonroot user
 USER nonroot
 
-# Tunnel Token env
+# Tunnel environments
 ENV TUNNEL_TOKEN=noToken
+ENV POST_QUANTUM=false
 
 ENTRYPOINT [ "/bin/sh", "entrypoint.sh" ]

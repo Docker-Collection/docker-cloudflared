@@ -20,5 +20,6 @@ services:
     container_name: cloudflared
     environment:
       - TUNNEL_TOKEN=YourToken
+      # - POST_QUANTUM=false # Cloudflare Post Quantum, Default: false
     restart: unless-stopped
 ```
