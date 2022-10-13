@@ -7,9 +7,13 @@ ARG CLOUDFLARED_VERSION=2022.10.0
 
 RUN ARCH=$([ "$(uname -m)" = "x86_64" ] && echo "amd64" || echo "arm64") \
     && \
-    apk add wget \
+    apk add wget curl jq coreutils \
     && \
     wget -O /usr/local/bin/cloudflared https://github.com/cloudflare/cloudflared/releases/download/${CLOUDFLARED_VERSION}/cloudflared-linux-${ARCH} \
+    && \
+    CHECKSUM=$(curl -H "Accept: application/vnd.github+json" https://api.github.com/repos/cloudflare/cloudflared/releases/tags/${CLOUDFLARED_VERSION} | jq -r .body | grep cloudflared-linux-${ARCH}: | cut -d ":" -f 2) \
+    && \
+    echo "${CHECKSUM} /usr/local/bin/cloudflared" | sha256sum --check \ 
     && \
     chmod +x /usr/local/bin/cloudflared
 
