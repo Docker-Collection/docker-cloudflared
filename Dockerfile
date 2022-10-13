@@ -23,11 +23,8 @@ FROM gcr.io/distroless/base-debian11@sha256:cefeffd60bd9127a3bb53dc83289cf1718a8
 # Copy Cloudflare binary to image
 COPY --from=cloudflared --chown=nonroot /usr/local/bin/cloudflared /usr/local/bin/cloudflared
 
-# Copy shell to image
-COPY --from=busybox /bin/sh /bin/sh
-
-# Copy tail to iamge
-COPY --from=busybox /bin/tail /bin/tail
+# Copy shell, tail into image
+COPY --from=busybox /bin/sh /bin/tail /bin/
 
 # Copy entrypoint
 COPY --chown=nonroot entrypoint.sh .
