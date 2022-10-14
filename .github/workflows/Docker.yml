@@ -92,7 +92,7 @@ jobs:
           images: |
             ${{ env.ghcr_docker }}
           tags: |
-            latest
+            type=raw,value=latest,enable={{is_default_branch}}
             type=semver,pattern={{version}},value=${{ steps.get_version.outputs.image_version }}
           labels: |
             org.opencontainers.image.authors=Efina
