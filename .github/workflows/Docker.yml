@@ -87,13 +87,17 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v4.1.0
         with:
           images: |
             ${{ env.ghcr_docker }}
           tags: |
-            latest
-            ${{ steps.get_version.outputs.image_version }}
+            type=raw,value=latest
+            type=semver,pattern={{version}},value=${{ steps.get_version.outputs.image_version }}
+          labels: |
+            org.opencontainers.image.authors=Efina
+            org.opencontainers.image.title=Docker Cloudflared
+            org.opencontainers.image.description=A simple version using environment control tunnel
 
       - name: Build & Push
         uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # tag=v3.2.0
