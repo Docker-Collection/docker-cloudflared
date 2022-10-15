@@ -63,6 +63,7 @@ jobs:
         with:
           image: ${{ env.ghcr_docker }}:test
           output-format: table
+          fail-build: false
 
       - name: Put Scan Summary
         run: |
