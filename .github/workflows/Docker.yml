@@ -39,14 +39,26 @@ jobs:
       - name: Setup Buildx
         uses: docker/setup-buildx-action@95cb08cb2672c73d4ffd2f422e6d11953d2a9c70 # tag=v2.1.0
 
-      - name: Build & Push
+      - name: Build Test
         uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # tag=v3.2.0
         with:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: false
+          load: true
           tags: |
             ${{ env.ghcr_docker }}:test
+
+      - name: Scan image
+        uses: anchore/scan-action@v3.3.0
+        with:
+          image: ${{ env.ghcr_docker }}:test
+          output-format: table
+
+      - name: Put Scan Summary
+        run: |
+          ls $(pwd)
+          echo "results test" >> $GITHUB_STEP_SUMMARY
 
   Push:
     runs-on: ubuntu-latest
@@ -81,8 +93,8 @@ jobs:
         id: get_version
         run: |
           version=$(grep 'CLOUDFLARED_VERSION=' Dockerfile | cut -d "=" -f 2)
-          echo "Current image version is $image_version"
-          echo "::set-output name=image_version::$version"
+          echo "## Image Version: ${version}" >> $GITHUB_STEP_SUMMARY
+          echo "image_version=${version}" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: meta
