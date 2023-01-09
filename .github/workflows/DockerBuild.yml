@@ -27,7 +27,6 @@ env:
   label_author_docker: "Efina"
   label_title_docker: "Docker Cloudflared"
   label_description_docker: "A simple version using environment control tunnel"
-  build_args: "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
 
 jobs:
   docker:
@@ -40,4 +39,4 @@ jobs:
       docker_label_description: ${{ env.label_description_docker }}
       version_detecter: true
       version_detecter_var: "CLOUDFLARED_VERSION="
-      build_args: ${{ env.build_args }}
+      build_args: "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
