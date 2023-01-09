@@ -1,0 +1,43 @@
+name: Docker
+
+on:
+  workflow_dispatch: {}
+  # schedule:
+  #   - cron: "0 16 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile
+      - entrypoint.sh
+  pull_request:
+    paths:
+      - Dockerfile
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  ghcr_docker: "ghcr.io/docker-collection/cloudflared"
+  label_author_docker: "Efina"
+  label_title_docker: "Docker Cloudflared"
+  label_description_docker: "A simple version using environment control tunnel"
+  build_args: "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
+
+jobs:
+  docker:
+    name: docker build
+    uses: Docker-Collection/reusable-workflows/.github/workflows/docker-build.yml@main
+    with:
+      docker_name: ${{ env.ghcr_docker }}
+      docker_label_author: ${{ env.label_author_docker }}
+      docker_label_title: ${{ env.label_title_docker }}
+      docker_label_description: ${{ env.label_description_docker }}
+      version_detecter: true
+      version_detecter_var: "CLOUDFLARED_VERSION="
+      build_args: ${{ env.build_args }}
