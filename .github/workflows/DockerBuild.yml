@@ -22,21 +22,15 @@ permissions:
   contents: read
   packages: write
 
-env:
-  ghcr_docker: "ghcr.io/docker-collection/cloudflared"
-  label_author_docker: "Efina"
-  label_title_docker: "Docker Cloudflared"
-  label_description_docker: "A simple version using environment control tunnel"
-
 jobs:
   docker:
     name: docker build
     uses: Docker-Collection/reusable-workflows/.github/workflows/docker-build.yml@main
     with:
-      docker_name: ${{ env.ghcr_docker }}
-      docker_label_author: ${{ env.label_author_docker }}
-      docker_label_title: ${{ env.label_title_docker }}
-      docker_label_description: ${{ env.label_description_docker }}
+      docker_name: "ghcr.io/docker-collection/cloudflared"
+      docker_label_author: "Efina"
+      docker_label_title: "Docker Cloudflared"
+      docker_label_description: "A simple version using environment control tunnel"
       version_detecter: true
       version_detecter_var: "CLOUDFLARED_VERSION="
       build_args: "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
