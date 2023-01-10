@@ -34,3 +34,4 @@ jobs:
       version_detecter: true
       version_detecter_var: "CLOUDFLARED_VERSION="
       build_args: true
+      build_time_var: "BUILDTIME"
