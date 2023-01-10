@@ -33,4 +33,4 @@ jobs:
       docker_label_description: "A simple version using environment control tunnel"
       version_detecter: true
       version_detecter_var: "CLOUDFLARED_VERSION="
-      build_args: "BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}"
+      build_args: true
