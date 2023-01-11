@@ -33,5 +33,5 @@ jobs:
       docker_label_description: "A simple version using environment control tunnel"
       version_detecter: true
       version_detecter_var: "CLOUDFLARED_VERSION="
-      build_args: true
-      build_time_var: "BUILDTIME"
+      special_build: true
+      special_build_args: "BUILDTIME"
