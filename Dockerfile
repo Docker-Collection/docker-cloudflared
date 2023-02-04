@@ -34,7 +34,7 @@ RUN apk --update --no-cache add git \
     xx-verify --static /bin/cloudflared
 
 # Stage - Main Image
-FROM gcr.io/distroless/base-debian11@sha256:1f862eab95bebd3fb40518407419a45ca3802854b67a89413985139a31358b19
+FROM gcr.io/distroless/base-debian11@sha256:92bccd38371ddba72386df6ac9cc2f8804932bbd3a457b81087639586f1810cd
 
 # Copy Cloudflare binary to image
 COPY --from=builder --chown=nonroot /bin/cloudflared /usr/local/bin/cloudflared
