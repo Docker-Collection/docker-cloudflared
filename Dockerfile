@@ -3,7 +3,7 @@ FROM busybox:1.36.0-uclibc@sha256:133c96e963fb798875f6dd48df3fd6e5d474e28b6f90ce
 FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a as cloudflared
 
 # Dockerfile cross compilation helper
-FROM tonistiigi/xx@sha256:66ffe58bd25bf822301324183a2a2743a4ed5db840253cc96b36694ef9e269d9 AS xx
+FROM tonistiigi/xx@sha256:8879a398dedf0aadaacfbd332b29ff2f84bc39ae6d4e9c0a1109db27ac5ba012 AS xx
 
 # Stage - Build Cloudflared
 FROM  golang:1.19-alpine@sha256:a00a03c72ecc1a01e4ca7b7cfb62459063912ff45ccb13011f9fb061e25916eb as builder
