@@ -6,7 +6,7 @@ FROM alpine:3.17.2@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10b
 FROM tonistiigi/xx@sha256:8879a398dedf0aadaacfbd332b29ff2f84bc39ae6d4e9c0a1109db27ac5ba012 AS xx
 
 # Stage - Build Cloudflared
-FROM  golang:1.19-alpine@sha256:31c62d91ada60d52cd2e40e1134778d32549cd58c131b30dd41069f998dc8490 as builder
+FROM  golang:1.19-alpine@sha256:62a2c842e9e59d98883cb7b1307265183ee5fdeda6f4d06260f6bc40ea712890 as builder
 
 # Copy xx scripts
 COPY --from=xx / /
