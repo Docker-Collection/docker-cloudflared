@@ -18,7 +18,7 @@ ENV GO111MODULE=on
 ENV CGO_ENABLED=0
 
 # renovate: datasource=github-releases depName=cloudflare/cloudflared
-ARG CLOUDFLARED_VERSION=2023.8.1
+ARG CLOUDFLARED_VERSION=2023.8.2
 
 RUN apk --update --no-cache add git \
     && \
