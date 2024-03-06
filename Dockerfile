@@ -1,4 +1,4 @@
-FROM busybox:1.36.1-uclibc@sha256:cc71f45a5a48738c4c295314b2bc9bcc18eb0c33e7bb127c3735b751b724141b as busybox
+FROM busybox:1.36.1-uclibc@sha256:f7ca678e57fbee8ea8a49e62835725c6f48bde5e90913637918efe1ecf315235 as busybox
 
 FROM alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b as cloudflared
 
