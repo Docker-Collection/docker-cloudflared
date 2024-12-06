@@ -1,6 +1,6 @@
 FROM busybox:1.37.0-uclibc@sha256:9319304ada20a44fa830725f2dd30537b57ed65861255cde38e80292cd7c6f9c as busybox
 
-FROM alpine:3.20.3@sha256:1e42bbe2508154c9126d48c2b8a75420c3544343bf86fd041fb7527e017a4b4a as cloudflared
+FROM alpine:3.21.0@sha256:21dc6063fd678b478f57c0e13f47560d0ea4eeba26dfc947b2a4f81f686b9f45 as cloudflared
 
 # Dockerfile cross compilation helper
 FROM tonistiigi/xx@sha256:0c6a569797744e45955f39d4f7538ac344bfb7ebf0a54006a0a4297b153ccf0f AS xx
