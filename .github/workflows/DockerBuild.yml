@@ -25,7 +25,7 @@ permissions:
 jobs:
   docker:
     name: docker build
-    uses: Docker-Collection/reusable-workflows/.github/workflows/docker-build.yml@main
+    uses: Docker-Collection/reusable-workflows/.github/workflows/docker-build.yml@4c6f1690d4cf124d63cdff9f78dbee74478f3aaf # main
     with:
       docker_name: "ghcr.io/docker-collection/cloudflared"
       docker_label_author: "Efina"
